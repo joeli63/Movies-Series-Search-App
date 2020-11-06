@@ -143,7 +143,7 @@
       },
       
       showSeriesError () {
-        return filteredData && filteredData.length === 0;
+        return this.filteredData && this.filteredData.length === 0;
       },
 
       filterData () {
