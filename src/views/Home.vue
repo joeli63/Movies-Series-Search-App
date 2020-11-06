@@ -32,7 +32,7 @@
     </div>
     <div v-if="showMoviesOrSeries">
       <MoviesSeriesList :moviesInfo="filterData" />
-      <div v-if="filteredData && filteredData.length === 0">
+      <div v-if="showSeriesError">
         <h2>Sorry, there is no such a serie.</h2>
       </div>
     </div>
@@ -140,6 +140,10 @@
 
       showErrorMessages () {
         return this.isLoading === false && this.filterData === undefined;
+      },
+      
+      showSeriesError () {
+        return filteredData && filteredData.length === 0;
       },
 
       filterData () {

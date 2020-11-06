@@ -18,13 +18,13 @@
       <img
         v-if="favoriteMovie.poster === 'N/A'"
         class="favorites__poster"
-        @click="goToSingleMovie(favoriteMovie.id)"
+        @click="goToSingleMovieOrSeries(favoriteMovie.id)"
         src="https://m.media-amazon.com/images/M/MV5BMTA4MzU0MTE3MjBeQTJeQWpwZ15BbWU4MDc4NTkxNjMx._V1_.jpg">
       <img
         v-else
         class="favorites__poster"
         :src="favoriteMovie.poster"
-        @click="goToSingleMovie(favoriteMovie.id)"
+        @click="goToSingleMovieOrSeries(favoriteMovie.id)"
         alt="image">
       </div>
     </div>
@@ -88,7 +88,7 @@
 
 <script>
   export default {
-    name: 'Home',
+    name: 'Favorites',
 
     data () {
       return  {
@@ -97,14 +97,13 @@
     },
 
     methods: {
-      goToSingleMovie(id) {
+      goToSingleMovieOrSeries(id) {
         this.$router.push({ name: 'details', params: { id }})
         localStorage.setItem('movieId', id);
       },
 
       removeFavorite(id) {
         let itemToRemove = this.favorites.map(item => item.id).indexOf(id);
-        console.log(itemToRemove);
         this.favorites.splice(itemToRemove, 1)
         localStorage.setItem('favoriteMovies', JSON.stringify(this.favorites));
       },
