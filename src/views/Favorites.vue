@@ -10,8 +10,11 @@
         class="favorites__movie"
       >
       <h3 class="favorites__title">{{ favoriteMovie.title }}</h3>
-      <p v-if="favoriteMovie.year">Year of release: {{ favoriteMovie.year }}</p>
-      <p v-else>Year of release is uknown</p>
+      <div class="favorites__year-remove">
+        <p v-if="favoriteMovie.year">Year of release: {{ favoriteMovie.year }}</p>
+        <p v-else>Year of release is uknown</p>
+        <button class="favorites__remove" @click="removeFavorite(favoriteMovie.id)">Remove from favorite</button>
+      </div>
       <img
         v-if="favoriteMovie.poster === 'N/A'"
         class="favorites__poster"
@@ -57,6 +60,23 @@
       line-height: 1.2;
     }
 
+    &__year-remove {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__remove {
+      appearance: none;
+      cursor: pointer;
+      background: crimson ;
+      border: none;
+      font-size: 13px;
+      border-radius: 4px;
+      color: #fff;
+      padding: 6px;
+    }
+
     &__poster {
       height: 350px;
       width: 100%;
@@ -78,8 +98,15 @@
 
     methods: {
       goToSingleMovie(id) {
-        this.$router.push({ name: 'single_movie', params: { id }})
+        this.$router.push({ name: 'details', params: { id }})
         localStorage.setItem('movieId', id);
+      },
+
+      removeFavorite(id) {
+        let itemToRemove = this.favorites.map(item => item.id).indexOf(id);
+        console.log(itemToRemove);
+        this.favorites.splice(itemToRemove, 1)
+        localStorage.setItem('favoriteMovies', JSON.stringify(this.favorites));
       },
     },
 

@@ -1,4 +1,4 @@
-# images-view
+# IMDB Movies/Series search app
 
 ## Project setup
 ```

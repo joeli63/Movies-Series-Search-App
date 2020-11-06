@@ -2,7 +2,7 @@
   <div>
     <div class="filters">
       <button class="filters__button -red" @click="filterByMovie">Filter by movie</button>
-      <button class="filters__button -green" @click="filterBySerie">Filter by serie</button>    
+      <button class="filters__button -green" @click="filterBySerie">Filter by series</button>    
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@
 
 <script>
   export default {
-    name: 'FilterComponent',
+    name: 'Filters',
 
     props: {
       filterInfo: {

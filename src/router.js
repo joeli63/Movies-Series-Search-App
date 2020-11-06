@@ -14,13 +14,13 @@ export default new Router({
       component: Home
     },
     {
-      name: 'single_movie',
-      path: '/movie/:id',
-      component: () => import('./views/SingleMovie.vue'),
+      name: 'details',
+      path: '/single/:id',
+      component: () => import('./views/Details.vue'),
     },
     {
+      name: 'favorites',
       path: '/favorites',
-      name: 'Favorites',
       component: () => import('./views/Favorites.vue'),
     }
   ]

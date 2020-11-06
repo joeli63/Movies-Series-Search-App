@@ -5,7 +5,7 @@
         <p> {{ errorMessage }}</p>
       </div>
       <div v-else>
-        <Movie
+        <MoviesSeriesItem
           class="images-grid"
           :movieSerieInfo="moviesInfo" />
       </div>
@@ -30,12 +30,13 @@
 </style>
 
 <script>
-  import Movie from '@/components/movie';
+  import MoviesSeriesItem from '@/components/singleItem';
+
   export default {
-    name: 'Movies',
+    name: 'MoviesAndSeries',
 
     components: {
-      Movie,
+      MoviesSeriesItem,
     },
 
     props: {

@@ -24,14 +24,14 @@
         </button>
       </form>
       <div v-if="showMoviesOrSeries">
-        <FilterGrid
+        <Filters
           :filterInfo="moviesInfo"
           @filtering="filterValue" 
         />
       </div>
     </div>
     <div v-if="showMoviesOrSeries">
-      <MoviesGrid :moviesInfo="filterData" />
+      <MoviesSeriesList :moviesInfo="filterData" />
       <div v-if="filteredData && filteredData.length === 0">
         <h2>Sorry, there is no such a serie.</h2>
       </div>
@@ -110,16 +110,16 @@
 </style>
 
 <script>
-  import MoviesGrid from '@/components/moviesGrid';
-  import FilterGrid from '@/components/filter';
-  import moviesApi from '@/api/movies';
+  import MoviesSeriesList from '@/components/listItems';
+  import Filters from '@/components/filters';
+  import MoviesOrSeriesService from '@/services/moviesOrSeries';
 
   export default {
     name: 'Home',
   
     components: {
-      MoviesGrid,
-      FilterGrid,
+      MoviesSeriesList,
+      Filters,
     },
 
     data () {
@@ -154,7 +154,7 @@
 
       searchMovie () {
         this.isLoading = true;
-        moviesApi.getMoviesOrSeries(this.desiredTitle, this.desiredYear)
+        MoviesOrSeriesService.getMoviesOrSeries(this.desiredTitle, this.desiredYear)
         .then(response => {
           this.filteredData = null;
           this.moviesInfo = response.body.Search;

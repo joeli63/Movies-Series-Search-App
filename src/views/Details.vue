@@ -7,6 +7,7 @@
       <div>
         <h2 class="single-image__title">{{ singleMovieSerieInfo.Title }} <span>({{ singleMovieSerieInfo.Year }})</span> </h2>
         <p class="single-image__info"><b>Genre:</b> {{ singleMovieSerieInfo.Genre }} | <b>Runtime</b>: <span>{{ singleMovieSerieInfo.Runtime }}</span></p>
+        <p class="single-image__info"><b>Director:</b> {{ singleMovieSerieInfo.Director }}</p>
         <p class="single-image__info"><b>Actors:</b> {{ singleMovieSerieInfo.Actors }}</p>
         <p class="single-image__info"><b>Descriprion:</b> {{ singleMovieSerieInfo.Plot }}</p>
       </div>
@@ -54,10 +55,10 @@
 </style>
 
 <script>
-  import movies from '@/api/movies';
+  import singleMovieSerieSevice from '@/services/moviesOrSeries';
 
   export default {
-    name: 'SingleMovie',
+    name: 'Details',
     
     data () {
       return {
@@ -68,7 +69,7 @@
 
     created () {
       this.movieSerieId = localStorage.getItem('movieId');
-      movies.getSingleMovieOrSeries(this.movieSerieId)
+      singleMovieSerieSevice.getSingleMovieOrSeries(this.movieSerieId)
       .then(response => {
         this.singleMovieSerieInfo = response.body;
       })

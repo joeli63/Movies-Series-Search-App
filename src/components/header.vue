@@ -8,8 +8,8 @@
         :class="{ 'changeMenu': isMobile, 'changeMenu': isOpen }"
         class="nav__links"
       >
-        <router-link @click.native="closeMenu" to="/">Home</router-link>
-        <router-link @click.native="closeMenu" to="/favorites">Favorites</router-link>
+        <router-link @click.native="closeMenuOnClick" to="/">Home</router-link>
+        <router-link @click.native="closeMenuOnClick" to="/favorites">Favorites</router-link>
       </div>
       <div
         v-if="isMobile"
@@ -167,7 +167,7 @@
         this.isOpen = !this.isOpen;
       },
 
-      closeMenu () {
+      closeMenuOnClick () {
         this.isOpen = false;
       },
 

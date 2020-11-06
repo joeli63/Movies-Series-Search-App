@@ -12,7 +12,7 @@
           class="movie__favorite-button"
           @click="addToFavorite(movie.imdbID, movie.Poster, movie.Year, movie.Title)"
         >
-          Add to the favorite
+          Add to favorite
         </button>
       </div>
       <img
@@ -97,7 +97,7 @@
 
 <script>
   export default {
-    name: 'MovieBox',
+    name: 'SingleMovieAndSeries',
 
     props: {
       movieSerieInfo: {
@@ -108,7 +108,7 @@
 
     methods: {
       goToSingleMovie(id) {
-        this.$router.push({ name: 'single_movie', params: { id }})
+        this.$router.push({ name: 'details', params: { id }})
         localStorage.setItem('movieId', id);
       },
 
@@ -122,10 +122,10 @@
         // Save moviesData back to local storage
         existingMovies.push(moviesData);
 
-        // Prevention of pushing the duplicated objects
-        const noDuplicatedFavorites = [...new Map(existingMovies.map(item => [item.id, item])).values()]
+        // Prevent pushing the duplicated objects
+        const withoutDuplicates = [...new Map(existingMovies.map(item => [item.id, item])).values()]
 
-        localStorage.setItem("favoriteMovies", JSON.stringify(noDuplicatedFavorites));
+        localStorage.setItem("favoriteMovies", JSON.stringify(withoutDuplicates));
       },
     }
   }
